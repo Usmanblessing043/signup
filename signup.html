@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .firstdiv, .seconddiv, .thirddiv, .fourthdiv, .fifthdiv, .sixthdiv, .seventhdiv{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    #firstinput, #secondinput, #thirdinput, #fourthinput, #fifthinput, #sixthinput{
+        width: 150px;
+        height: 20px;
+        text-align: center;
+    }
+    p{
+        font-weight: 800;
+    }
+    .eightdiv{
+        background-image: url(destructive_car_race-1920x1200.jpg);
+        height: 100vh;
+        width: 100%;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.116);
+        /* background-color: rgba(0, 0, 0, 0.678); */
+        background-blend-mode:darken;
+        
+        
+        
+    }
+    .ninthdiv{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* background-color: rgba(0, 255, 255, 0.61); */
+        height: 500px;
+        width: 500px;
+        background: linear-gradient(rgba(255, 0, 0, 0.582), rgba(255, 255, 0, 0.527));
+        background-blend-mode: lighten;
+        margin-top: 40px;
+        gap: 30px;
+    }
+    table, thead, tbody, th, td, tr{
+        border-collapse: collapse;
+        padding: 10px;
+        border: solid 2px greenyellow;
+        color: black;
+        background-color: rgba(245, 222, 179, 0.288);
+        text-align: center;
+        font-size: 15px;
+        background-blend-mode: luminosity;
+        font-weight: 800;
+        
+        
+
+    }
+    th, td{
+        width: 150px;
+        
+    }
+    td:nth-child(even) {
+        background-color: rgba(165, 42, 42, 0.568);
+        background-blend-mode: luminosity;
+        
+        
+    }
+    h1{
+        background-color: black;
+        background-blend-mode: color-dodge;
+        color: whitesmoke;
+        font-weight: 900;
+    }
+    #btn{
+        background-color: blue;
+        color: white;
+        height: 30px;
+        width: 70px;
+        border-radius: 20px;
+        border: none;
+    }
+    #btn:hover{
+        color: blue;
+        background-color: white;
+        border: none;
+        
+    }
+</style>
+<body>
+     <div class="eightdiv">
+        <div class="ninthdiv">
+            <h1>REGISTRATION FORM</h1>
+             <div class="firstdiv">
+                <p>Surname</p><input id="firstinput" type="text" placeholder="Surname">
+             </div>
+             <div class="seconddiv">
+                <p>Firstname</p><input id="secondinput" type="text" placeholder="firstname">
+             </div>
+             <div class="thirddiv">
+                <p>Othername</p><input id="thirdinput" type="text" placeholder="Othername">
+             </div>
+             <div class="fourthdiv">
+                <p>Email</p><input id="fourthinput" type="email" placeholder="Email" id="">
+             </div>
+             <div class="fifthdiv">
+                <p>Password</p><input id="fifthinput" type="password" name="" id="" placeholder="password">
+             </div>
+             <div class="sixthdiv">
+                <p>Re-enter Password</p><input id="sixthinput" type="password" name="" id="" placeholder="re-enter password">
+             </div>
+             <div class="seventhdiv">
+                <p>I abide to the terms and condition</p><input id="seventhinput"  type="checkbox" id="">
+             </div>
+            
+             
+        
+                <button id="btn" onclick="signup()">Sign up</button>
+        </div>
+            <table>
+                <thead>
+                    <th>S/n</th>
+                    <th>Surname</th>
+                    <th>Firstname</th>
+                    <th>Othername</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <!-- <th>Condition</th> -->
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        
+                </tbody>
+            </table>
+     </div>
+   
+    
+
+    
+</body>
+</html>
+<script>
+    
+    let record = JSON.parse(localStorage.getItem('march-signup')) || []
+    let email = JSON.parse(localStorage.getItem('march-push')) || []
+    display()
+    
+    function signup() {
+
+
+        
+
+        if (firstinput.value === '' || secondinput.value === '' || thirdinput.value === '' || fourthinput.value === '' || fifthinput.value === '' || sixthinput.value === '' || seventhinput.value === '') {
+            alert('Input text')
+            
+        }else if(fifthinput.value !== sixthinput.value){
+
+            alert('Password does not tally')
+        }
+        
+        else if( email.includes(fourthinput.value)){
+            alert('Email already exist')
+            return
+
+        }
+        else{
+            let allrecord = { firstinput: firstinput.value.toUpperCase(), secondinput: secondinput.value.toUpperCase(), thirdinput: thirdinput.value.toUpperCase(), fourthinput: fourthinput.value.toUpperCase(), fifthinput: fifthinput.value, sixthinput: sixthinput.value, seventhinput: seventhinput.value}
+            record.push(allrecord)
+            localStorage.setItem('march-signup', JSON.stringify(record))
+            display()
+        //    record.seventhinput = true 
+        }
+       
+        email.push(fourthinput.value)
+        localStorage.setItem('march-push', JSON.stringify(email))
+        display()
+        // fourthinput.value.push(email)
+       
+    }
+    function display() {
+            tbody.innerHTML = ''
+            record.forEach((rec, i, arr)=>{
+                tbody.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td>${rec.firstinput}</td>
+                    <td>${rec.secondinput}</td>
+                    <td>${rec.thirdinput}</td>
+                    <td>${rec.fourthinput}</td>
+                    <td>${rec.fifthinput}</td>
+                </tr>`
+
+            })
+            
+        }
+    
+</script>
