@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    #firstdiv{
+        background-image: url(destructive_car_race-1920x1200.jpg);
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    #seconddiv{
+        background-color:darkorange;
+        height: 500px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        border-radius: 30px;
+
+    }
+    #myemail, #mypassword{
+        height: 40px;
+        width: 200px;
+        text-align: center;
+        border-radius: 10px;
+
+    }
+    #btn{
+        height: 30px;
+        width: 100px;
+        border-radius: 10px;
+    }
+    h1{
+        color: rgb(255, 255, 255);
+    }
+
+
+</style>
+<body>
+    <div id="firstdiv">
+        <h1>LOGIN</h1>
+        <div id="seconddiv">
+            <input type="email" id="myemail" placeholder="Email">
+            <input type="password" id="mypassword" placeholder="Password">
+            <button id="btn" onclick="login()">login</button>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+
+    let marchlogin = JSON.parse(localStorage.getItem('march-signup'))
+
+    function login() {
+        let founduser = marchlogin.find((user)=>{
+            return user.userEmail === myemail.value.trim()
+        })
+        if ( !founduser) {
+            alert('user does not exist')
+            
+        }else{
+            if (founduser.userPassword === mypassword.value.trim()) {
+                alert('Login successful')
+                window.location.href = 'dashboard.html'
+                
+            }else{
+                alert('Incorrect password or email')
+            }
+        }
+
+        
+    }
+
+</script>

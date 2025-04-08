@@ -153,38 +153,49 @@
 <script>
     
     let record = JSON.parse(localStorage.getItem('march-signup')) || []
-    let email = JSON.parse(localStorage.getItem('march-push')) || []
+    // let email = JSON.parse(localStorage.getItem('march-push')) || []
     display()
     
     function signup() {
-
-
+        let userFirstName = firstinput.value.trim()
+        let usersecondName = secondinput.value.trim()
+        let userlastName = thirdinput.value.trim()
+        let userEmail = fourthinput.value.trim()
+        let userPassword = fifthinput.value.trim()
+        let userConfirmPassword = sixthinput.value.trim()
         
 
-        if (firstinput.value === '' || secondinput.value === '' || thirdinput.value === '' || fourthinput.value === '' || fifthinput.value === '' || sixthinput.value === '' || seventhinput.value === '') {
+        if (!userFirstName || !usersecondName|| !userlastName ||!userEmail || !userPassword) {
             alert('Input text')
             
-        }else if(fifthinput.value !== sixthinput.value){
+        }else if(userPassword.length < 8){
+
+            alert('Password must not be less than eight character ')
+        }else if(userPassword !== userConfirmPassword){
 
             alert('Password does not tally')
         }
         
-        else if( email.includes(fourthinput.value)){
+        else if(record.find((user)=>{return user.userEmail === userEmail}) ){
             alert('Email already exist')
             return
 
+            
+
         }
         else{
-            let allrecord = { firstinput: firstinput.value.toUpperCase(), secondinput: secondinput.value.toUpperCase(), thirdinput: thirdinput.value.toUpperCase(), fourthinput: fourthinput.value.toUpperCase(), fifthinput: fifthinput.value, sixthinput: sixthinput.value, seventhinput: seventhinput.value}
+            let allrecord = { userFirstName, usersecondName, userlastName, userEmail, userPassword}
             record.push(allrecord)
             localStorage.setItem('march-signup', JSON.stringify(record))
+            alert('signup successfull')
+            // email.push(fourthinput.value)
+            // localStorage.setItem('march-push', JSON.stringify(email))
+            window.location.href = "login.html"
             display()
         //    record.seventhinput = true 
         }
        
-        email.push(fourthinput.value)
-        localStorage.setItem('march-push', JSON.stringify(email))
-        display()
+       
         // fourthinput.value.push(email)
        
     }
@@ -193,15 +204,17 @@
             record.forEach((rec, i, arr)=>{
                 tbody.innerHTML += `<tr>
                     <td>${i+1}</td>
-                    <td>${rec.firstinput}</td>
-                    <td>${rec.secondinput}</td>
-                    <td>${rec.thirdinput}</td>
-                    <td>${rec.fourthinput}</td>
-                    <td>${rec.fifthinput}</td>
+                    <td>${rec.userFirstName}</td>
+                    <td>${rec.usersecondName}</td>
+                    <td>${rec.userlastName}</td>
+                    <td>${rec.userEmail}</td>
+                    <td>${rec.userPassword}</td>
                 </tr>`
 
             })
             
         }
+
+        
     
 </script>

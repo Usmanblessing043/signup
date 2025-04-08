@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dash.css">
+    <title>dashboard</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <div class="wrapper">
+        <!-- PRICING-TABLE CONTAINER -->
+        <div class="pricing-table group">
+            <div id="display"></div>
+            <br>
+            <br>
+            <h1 class="heading">
+                Pricing overview
+            </h1>
+            <!-- PERSONAL -->
+            <div class="block personal fl">
+                <h2 class="title">personal</h2>
+                <!-- CONTENT -->
+                <div class="content">
+                    <p class="price">
+                        <sup>$</sup>
+                        <span>29</span>
+                        <sub>/mo.</sub>
+                    </p>
+                    <p class="hint">Perfect for freelancers</p>
+                </div>
+                <!-- /CONTENT -->
+                <!-- FEATURES -->
+                <ul class="features">
+                    <li><span class="fontawesome-cog"></span>1 WordPress Install</li>
+                    <li><span class="fontawesome-star"></span>25,000 visits/mo.</li>
+                    <li><span class="fontawesome-dashboard"></span>Unlimited Data Transfer</li>
+                    <li><span class="fontawesome-cloud"></span>10GB Local Storage</li>
+                </ul>
+                <!-- /FEATURES -->
+                <!-- PT-FOOTER -->
+                <div class="pt-footer">
+                    <p>Host My Website</p>
+                </div>
+                <!-- /PT-FOOTER -->
+            </div>
+            <!-- /PERSONAL -->
+            <!-- PROFESSIONAL -->
+            <div class="block professional fl">
+                <h2 class="title">Professional</h2>
+                <!-- CONTENT -->
+                <div class="content">
+                    <p class="price">
+                        <sup>$</sup>
+                        <span>99</span>
+                        <sub>/mo.</sub>
+                    </p>
+                    <p class="hint">Suitable for startups</p>
+                </div>
+                <!-- /CONTENT -->
+                <!-- FEATURES -->
+                <ul class="features">
+                    <li><span class="fontawesome-cog"></span>10 WordPress Install</li>
+                    <li><span class="fontawesome-star"></span>100,000 visits/mo.</li>
+                    <li><span class="fontawesome-dashboard"></span>Unlimited Data Transfer</li>
+                    <li><span class="fontawesome-cloud"></span>20GB Local Storage</li>
+                </ul>
+                <!-- /FEATURES -->
+                <!-- PT-FOOTER -->
+                <div class="pt-footer">
+                    <p>Host My Website</p>
+                </div>
+                <!-- /PT-FOOTER -->
+            </div>
+            <!-- /PROFESSIONAL -->
+            <!-- BUSINESS -->
+            <div class="block business fl">
+                <h2 class="title">Business</h2>
+                <!-- CONTENT -->
+                <div class="content">
+                    <p class="price">
+                        <sup>$</sup>
+                        <span>249</span>
+                        <sub>/mo.</sub>
+                    </p>
+                    <p class="hint">For established business</p>
+                </div>
+                <!-- /CONTENT -->
+
+                <!-- FEATURES -->
+                <ul class="features">
+                    <li><span class="fontawesome-cog"></span>25 WordPress Install</li>
+                    <li><span class="fontawesome-star"></span>400,000 visits/mo.</li>
+                    <li><span class="fontawesome-dashboard"></span>Unlimited Data Transfer</li>
+                    <li><span class="fontawesome-cloud"></span>30GB Local Storage</li>
+                </ul>
+                <!-- /FEATURES -->
+
+                <!-- PT-FOOTER -->
+                <div class="pt-footer">
+                    <p>Host My Website</p>
+                </div>
+                <!-- /PT-FOOTER -->
+            </div>
+               
+            <button id="btn" onclick="btn()">Log out</button>
+        </div>
+        <!-- /PRICING-TABLE -->
+         
+    </div>
+    
+
+    
+</body>
+</html>
+<script>
+
+    let mywelcome = JSON.parse(localStorage.getItem('march-signup'))
+
+    let founduser = mywelcome.find((user)=>{
+            return user
+        })
+
+
+    if (founduser === null) {
+        window.location.href ='signup.html'
+        
+    }else{
+        display.innerHTML = `Welcome to your dashboard ${founduser.userFirstName} ${founduser.usersecondName}`
+    }
+
+    function btn() {
+        localStorage.removeItem('march-signup')
+         window.location.reload()
+
+        window.location.replace('signup.html')
+
+        
+    }
+    
+
+
+
+
+</script>
